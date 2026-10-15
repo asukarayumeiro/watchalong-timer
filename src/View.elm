@@ -119,16 +119,20 @@ viewTimerControls label model =
     div [ class "controls" ]
         [ div [] [ startPauseButton label model.paused ]
         , div [ class "ff-buttons" ]
-            [ rewindButton 1 label.backward
-            , rewindButton 10 label.backward10
-            , rewindButton 60 label.backward60
-            , rewindButton 600 label.backward600
-            , rewindButton 3600 label.backward3600
-            , fastForwardButton 1 label.forward
-            , fastForwardButton 10 label.forward10
-            , fastForwardButton 60 label.forward60
-            , fastForwardButton 600 label.forward600
-            , fastForwardButton 3600 label.forward3600
+            [ div [ class "ff-column" ]
+                [ rewindButton 1 label.backward
+                , rewindButton 10 label.backward10
+                , rewindButton 60 label.backward60
+                , rewindButton 600 label.backward600
+                , rewindButton 3600 label.backward3600
+                ]
+            , div [ class "ff-column" ]
+                [ fastForwardButton 1 label.forward
+                , fastForwardButton 10 label.forward10
+                , fastForwardButton 60 label.forward60
+                , fastForwardButton 600 label.forward600
+                , fastForwardButton 3600 label.forward3600
+                ]
             ]
         , div [] [ resetForm label model.setting.initialTimeSeconds ]
         ]
