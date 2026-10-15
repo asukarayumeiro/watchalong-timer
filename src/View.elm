@@ -119,8 +119,16 @@ viewTimerControls label model =
     div [ class "controls" ]
         [ div [] [ startPauseButton label model.paused ]
         , div [ class "ff-buttons" ]
-            [ rewindButton label
-            , fastForwardButton label
+            [ rewindButton 1 label.backward
+            , rewindButton 10 label.backward10
+            , rewindButton 60 label.backward60
+            , rewindButton 600 label.backward600
+            , rewindButton 3600 label.backward3600
+            , fastForwardButton 1 label.forward
+            , fastForwardButton 10 label.forward10
+            , fastForwardButton 60 label.forward60
+            , fastForwardButton 600 label.forward600
+            , fastForwardButton 3600 label.forward3600
             ]
         , div [] [ resetForm label model.setting.initialTimeSeconds ]
         ]
@@ -143,19 +151,17 @@ startPauseButton label paused =
             ]
 
 
-rewindButton : I18n.Label -> Html Msg
-rewindButton label =
-    button [ id "rewind-button", class "outline", onClick <| RewindSec 1 ]
-        [ i [ class "fas", class "fa-backward", class "button-icon" ] []
-        , text label.backward
+rewindButton : Int -> String -> Html Msg
+rewindButton sec caption =
+    button [ class "outline", onClick <| RewindSec sec ]
+        [ text caption
         ]
 
 
-fastForwardButton : I18n.Label -> Html Msg
-fastForwardButton label =
-    button [ id "fastforward-button", class "outline", onClick <| FastForwardSec 1 ]
-        [ text label.forward
-        , i [ class "fas", class "fa-forward", class "button-icon" ] []
+fastForwardButton : Int -> String -> Html Msg
+fastForwardButton sec caption =
+    button [ class "outline", onClick <| FastForwardSec sec ]
+        [ text caption
         ]
 
 
@@ -251,18 +257,14 @@ updateResetTimeValue isMinus timeValue =
 
 resetForm : I18n.Label -> Int -> Html Msg
 resetForm i18n initialTimeSeconds =
-    let
-        resetTime =
-            initialTimeToResetTime initialTimeSeconds
-    in
     div [ class "reset-form" ]
         [ input
             [ type_ "time"
-            , value <| resetTimeValueToString resetTime.timeValue
+            , value "00:00:00"
             , step "1"
             , size 8
             , class "reset-form-time"
-            , onInput <| updateResetTimeValue resetTime.isMinus
+            , onInput <| updateResetTimeValue False
             ]
             []
         , button [ id "reset-button", class "contrast", class "reset-form-button", onClick Reset ]
