@@ -1,3 +1,3 @@
 module.exports = {
-    homepage: "https://github.com/mather/sync-timer"
+    homepage: "https://github.com/yota-2026/watchalong-timer"
 }
