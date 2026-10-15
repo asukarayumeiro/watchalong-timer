@@ -119,7 +119,7 @@ renderBig2Digits digits =
 viewTimerControls : I18n.Label -> Model -> Html Msg
 viewTimerControls label model =
     div [ class "controls" ]
-        , div [ class "ff-buttons" ]
+        [ div [ class "ff-buttons" ]
             [ div [ class "ff-column" ]
                 [ rewindButton 1 label.backward
                 , rewindButton 10 label.backward10
