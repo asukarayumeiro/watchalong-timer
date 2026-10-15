@@ -46,7 +46,7 @@ viewTimer label model =
                     [ class "outline"
                     , id "countdown-start-button"
                     ]
-                    [ text "10秒カウントしてから開始" ]
+                    [ text label.start ]
                 , startPauseButton label model.paused
                 ]
             ]
