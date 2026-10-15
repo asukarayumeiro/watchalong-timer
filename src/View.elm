@@ -39,7 +39,7 @@ view label model =
 viewTimer : I18n.Label -> Model -> Html Msg
 viewTimer label model =
     div [ class "grid" ]
-        [ div []
+        [ div [ class "timer-controls" ]
             [ viewTimerDigits model.timeMillis
             , div [] [ startPauseButton label model.paused ]
             ]
