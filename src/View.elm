@@ -56,9 +56,9 @@ viewTimerDigits millis =
     in
     div
         [ class "timer"
-        , class "d-din-bold"
-        , class "greenback"
-        , style "color" "#415462"
+        , style "font-family" "'BIZ UDGothic', sans-serif"
+        , style "background-color" "#000000"
+        , style "color" "#ffffff"
         ]
         [ div [ class "digits" ] <|
             List.concat
