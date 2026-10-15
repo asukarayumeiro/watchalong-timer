@@ -4,10 +4,11 @@ import elmPlugin from "vite-plugin-elm";
 import Sitemap from "vite-plugin-sitemap";
 
 const sitemapConfig = {
-  hostname: "https://sync-timer.netlify.app/",
+  hostname: "https://yota-2026.github.io/watchalong-timer/",
 };
 
 export default defineConfig({
+  base: "/watchalong-timer/",
   plugins: [elmPlugin(), Sitemap(sitemapConfig)],
   build: {
     rollupOptions: {
