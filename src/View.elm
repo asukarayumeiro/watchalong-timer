@@ -1,12 +1,11 @@
-module View exposing (DisplayTime, ResetTimeValue, millisToDisplayTime, resetTimeValueParser, resetTimeValueToString, view)
+module View exposing (DisplayTime, millisToDisplayTime, view)
 
-import Html exposing (Html, button, div, i, input, label, span, text)
-import Html.Attributes exposing (checked, class, for, id, size, step, style, type_, value)
-import Html.Events exposing (onCheck, onClick, onInput)
+import Html exposing (Html, button, div, i, span, text)
+import Html.Attributes exposing (class, id, style)
+import Html.Events exposing (onClick)
 import I18n
 import Model exposing (Model)
 import Msg exposing (Msg(..))
-import Parser exposing ((|.), (|=))
 
 
 type alias DisplayTime =
@@ -167,96 +166,6 @@ fastForwardButton sec caption =
     button [ class "outline", onClick <| FastForwardSec sec ]
         [ text caption
         ]
-
-
-type alias ResetTime =
-    { isMinus : Bool
-    , timeValue : ResetTimeValue
-    }
-
-
-type alias ResetTimeValue =
-    { hours : Int
-    , minutes : Int
-    , seconds : Int
-    }
-
-
-zeroPadIntParser : Parser.Parser Int
-zeroPadIntParser =
-    Parser.oneOf
-        [ Parser.succeed identity |. Parser.chompIf ((==) '0') |= Parser.int
-        , Parser.int
-        ]
-
-
-resetTimeValueParser : Parser.Parser ResetTimeValue
-resetTimeValueParser =
-    Parser.succeed ResetTimeValue
-        |= zeroPadIntParser
-        |. Parser.symbol ":"
-        |= zeroPadIntParser
-        |. Parser.symbol ":"
-        |= zeroPadIntParser
-
-
-resetTimeValueToString : ResetTimeValue -> String
-resetTimeValueToString value =
-    (String.padLeft 2 '0' <| String.fromInt value.hours)
-        ++ ":"
-        ++ (String.padLeft 2 '0' <| String.fromInt value.minutes)
-        ++ ":"
-        ++ (String.padLeft 2 '0' <| String.fromInt value.seconds)
-
-
-initialTimeToResetTime : Int -> ResetTime
-initialTimeToResetTime initialTimeSeconds =
-    let
-        absSeconds =
-            abs initialTimeSeconds
-
-        hours =
-            absSeconds // 3600
-
-        minutes =
-            absSeconds // 60 |> modBy 60
-
-        seconds =
-            absSeconds |> modBy 60
-    in
-    { isMinus = initialTimeSeconds < 0
-    , timeValue =
-        { hours = hours
-        , minutes = minutes
-        , seconds = seconds
-        }
-    }
-
-
-negateIf : Bool -> Int -> Int
-negateIf isMinus value =
-    if isMinus then
-        negate value
-
-    else
-        value
-
-
-updateResetTimeMinus : Int -> Bool -> Msg
-updateResetTimeMinus initialTimeSeconds isMinus =
-    abs initialTimeSeconds
-        |> negateIf isMinus
-        |> UpdateResetTime
-
-
-updateResetTimeValue : Bool -> String -> Msg
-updateResetTimeValue isMinus timeValue =
-    Parser.run resetTimeValueParser timeValue
-        |> Result.toMaybe
-        |> Maybe.map (\t -> t.hours * 3600 + t.minutes * 60 + t.seconds)
-        |> Maybe.map (negateIf isMinus)
-        |> Maybe.map UpdateResetTime
-        |> Maybe.withDefault NoOp
 
 
 resetForm : I18n.Label -> Html Msg
