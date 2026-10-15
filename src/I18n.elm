@@ -3,6 +3,7 @@ module I18n exposing (..)
 
 type alias Label =
     { start : String
+    , countdownStart : String
     , pause : String
     , reset : String
     , backward : String
@@ -21,6 +22,7 @@ type alias Label =
 labelJa : Label
 labelJa =
     { start = "開始"
+    , countdownStart = "10秒カウントしてから開始"
     , pause = "一時停止"
     , reset = "リセット"
     , backward = "-1秒"
@@ -39,6 +41,7 @@ labelJa =
 labelEn : Label
 labelEn =
     { start = "Start"
+    , countdownStart = "Start after 10-second countdown"
     , pause = "Pause"
     , reset = "Reset"
     , backward = "Backward 1sec"

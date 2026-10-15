@@ -46,7 +46,7 @@ viewTimer label model =
                     [ class "outline"
                     , id "countdown-start-button"
                     ]
-                    [ text label.start ]
+                    [ text label.countdownStart  ]
                 , startPauseButton label model.paused
                 ]
             ]
