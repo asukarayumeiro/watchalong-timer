@@ -35,13 +35,26 @@
   </head>
   <body>
     <noscript> You need to enable JavaScript to run this app. </noscript>
-    <header>
-      <nav class="container">
-        <ul>
-          <li><strong style="font-size: xx-large">同時視聴用タイマー / Watchalong Timer</strong></li>
-        </ul>
-      </nav>
-    </header>
+	<header>
+	  <nav class="container">
+	    <ul>
+	      <li>
+	        <strong style="font-size: xx-large">同時視聴用タイマー / Watchalong Timer</strong>
+	      </li>
+	    </ul>
+	    <ul>
+	      <li>
+	        <a
+	          href="https://x.com/asukarayumeiro"
+	          target="_blank"
+	          rel="noopener noreferrer"
+	        >
+	          <i class="fab fa-twitter button-icon"></i>@asukarayumeiro
+	        </a>
+	      </li>
+	    </ul>
+	  </nav>
+	</header>
     <main>
       <div id="root"></div>
     </main>
@@ -63,20 +76,6 @@
         </div>
       </div>
     </footer>
-    <dialog id="usage-dialog">
-      <article>
-        <header>
-          <a
-            href="#"
-            aria-label="Close"
-            class="close"
-            onclick="closeDialog()"
-          ></a
-          >使い方を動画で見る
-        </header>
-        <div id="ytplayer"></div>
-      </article>
-    </dialog>
     <script async src="./js/index.js" type="module"></script>
   </body>
 </html>
