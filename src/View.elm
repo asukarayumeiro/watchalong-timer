@@ -47,6 +47,8 @@ viewTimer label model =
                     , id "countdown-start-button"
                     ]
                     [ text label.countdownStart  ]
+                , div [ style "text-align" "center" ]
+                    [ text "OR" ]
                 , startPauseButton label model.paused
                 ]
             ]
