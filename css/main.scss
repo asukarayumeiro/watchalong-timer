@@ -229,3 +229,13 @@ button.reset-form-button {
     background-color: white;
   }
 }
+
+body > header {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+body > main {
+  padding-top: 0;
+  margin-top: 0;
+}
