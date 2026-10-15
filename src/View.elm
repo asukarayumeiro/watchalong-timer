@@ -1,10 +1,10 @@
-module View exposing (DisplayTime, ResetTimeValue, millisToDisplayTime, resetTimeValueParser, resetTimeValueToString, selectBgColor, selectFgFont, view)
+module View exposing (DisplayTime, ResetTimeValue, millisToDisplayTime, resetTimeValueParser, resetTimeValueToString, view)
 
-import Html exposing (Attribute, Html, a, button, details, div, i, input, label, option, select, small, span, summary, text)
-import Html.Attributes exposing (attribute, checked, class, for, href, id, selected, size, step, style, type_, value)
+import Html exposing (Html, button, div, i, input, label, span, text)
+import Html.Attributes exposing (checked, class, for, id, size, step, style, type_, value)
 import Html.Events exposing (onCheck, onClick, onInput)
 import I18n
-import Model exposing (BgColor(..), FgFont(..), Model, Setting, decodeBgColor, decodeFgFont, encodeBgColor, encodeFgFont)
+import Model exposing (Model)
 import Msg exposing (Msg(..))
 import Parser exposing ((|.), (|=))
 
@@ -34,79 +34,38 @@ view : I18n.Label -> Model -> Html Msg
 view label model =
     div [ class "container" ]
         [ viewTimer label model
-        , viewTimerSettings label model.setting
         ]
 
 
 viewTimer : I18n.Label -> Model -> Html Msg
 viewTimer label model =
     div [ class "grid" ]
-        [ viewTimerDigits model.timeMillis model.setting
+        [ viewTimerDigits model.timeMillis
         , viewTimerControls label model
         ]
 
 
-viewTimerDigits : Int -> Setting -> Html Msg
-viewTimerDigits millis setting =
+viewTimerDigits : Int -> Html Msg
+viewTimerDigits millis =
     let
         displayTime =
             millisToDisplayTime millis
 
         displaySegments =
-            if setting.showHour then
-                [ displayTime.hours, displayTime.minutes, displayTime.seconds ]
-
-            else
-                [ displayTime.hours * 60 + displayTime.minutes, displayTime.seconds ]
+            [ displayTime.hours, displayTime.minutes, displayTime.seconds ]
     in
-    div [ class "timer", fontClass setting.fgFont, timerBgColorClass setting.bgColor, style "color" setting.fgColor ]
+    div
+        [ class "timer"
+        , class "d-din-bold"
+        , class "greenback"
+        , style "color" "#415462"
+        ]
         [ div [ class "digits" ] <|
-            (List.concat <|
+            List.concat
                 [ [ span (styleTimerSign displayTime.isMinus) [ text "-" ] ]
                 , List.foldr joinWithSegment [] <| List.map renderBig2Digits displaySegments
                 ]
-            )
-                ++ viewProgressBar millis setting
         ]
-
-
-fontClass : FgFont -> Html.Attribute Msg
-fontClass =
-    encodeFgFont >> class
-
-
-progress : Int -> Int -> String
-progress millis initialTimeSeconds =
-    if millis < 0 then
-        (String.fromFloat <| min 100.0 <| toFloat millis / (toFloat initialTimeSeconds * 10)) ++ "%"
-
-    else
-        "100%"
-
-
-viewProgressBar : Int -> Setting -> List (Html Msg)
-viewProgressBar millis setting =
-    let
-        visibility =
-            style "visibility" <|
-                if millis >= 0 then
-                    "hidden"
-
-                else
-                    "visible"
-    in
-    if setting.showProgress then
-        [ div
-            [ class "progress"
-            , style "width" <| progress millis setting.initialTimeSeconds
-            , style "background-color" setting.fgColor
-            , visibility
-            ]
-            []
-        ]
-
-    else
-        []
 
 
 joinWithSegment : List (Html Msg) -> List (Html Msg) -> List (Html Msg)
@@ -117,19 +76,6 @@ joinWithSegment a b =
 
         _ ->
             List.concat [ a, [ span styleTimerSep [ text ":" ] ], b ]
-
-
-timerBgColorClass : BgColor -> Attribute Msg
-timerBgColorClass bgColor =
-    case bgColor of
-        Transparent ->
-            class "transparent"
-
-        GreenBack ->
-            class "greenback"
-
-        BlueBack ->
-            class "blueback"
 
 
 padZero : Int -> Int -> String
@@ -311,100 +257,26 @@ resetForm i18n initialTimeSeconds =
     in
     div [ class "reset-form" ]
         [ label [ for "reset-is-minus", class "reset-form-minus" ]
-            [ input [ id "reset-is-minus", type_ "checkbox", checked resetTime.isMinus, onCheck <| updateResetTimeMinus initialTimeSeconds ] []
+            [ input
+                [ id "reset-is-minus"
+                , type_ "checkbox"
+                , checked resetTime.isMinus
+                , onCheck <| updateResetTimeMinus initialTimeSeconds
+                ]
+                []
             , text i18n.minusSign
             ]
-        , input [ type_ "time", value <| resetTimeValueToString resetTime.timeValue, step "1", size 8, class "reset-form-time", onInput <| updateResetTimeValue resetTime.isMinus ] []
+        , input
+            [ type_ "time"
+            , value <| resetTimeValueToString resetTime.timeValue
+            , step "1"
+            , size 8
+            , class "reset-form-time"
+            , onInput <| updateResetTimeValue resetTime.isMinus
+            ]
+            []
         , button [ id "reset-button", class "contrast", class "reset-form-button", onClick Reset ]
-            [ i [ class "fas", class "fa-backward-fast", class "button-icon" ] [], text i18n.reset ]
-        ]
-
-
-role : String -> Attribute Msg
-role s =
-    attribute "role" s
-
-
-viewTimerSettings : I18n.Label -> Setting -> Html Msg
-viewTimerSettings i18n setting =
-    details [ class "settings", attribute "open" "true" ]
-        [ summary [] [ text i18n.displaySetting ]
-        , div [ class "grid" ]
-            [ viewFgColorInput i18n setting.fgColor
-            , viewFgFontInput i18n setting.fgFont
-            ]
-        , viewBgColorInput i18n setting.bgColor
-        , div
-            [ class "grid" ]
-            [ label [ for "showHour" ]
-                [ input [ type_ "checkbox", id "showHour", role "switch", checked setting.showHour, onClick ToggleShowHour ] []
-                , text i18n.showHour
-                ]
-            , label [ for "showProgress" ]
-                [ input [ type_ "checkbox", id "showProgress", role "switch", checked setting.showProgress, onClick ToggleShowProgress ] []
-                , text i18n.showProgress
-                ]
+            [ i [ class "fas", class "fa-backward-fast", class "button-icon" ] []
+            , text i18n.reset
             ]
         ]
-
-
-viewFgColorInput : I18n.Label -> String -> Html Msg
-viewFgColorInput i18n fgColor =
-    div [ class "grid" ]
-        [ div []
-            [ label [ for "fgColorPicker" ]
-                [ text i18n.fgColor
-                , input [ type_ "color", id "fgColorPicker", value fgColor, onInput SetFgColor ] []
-                ]
-            ]
-        , div []
-            [ label [ for "fgColorText" ]
-                [ text i18n.fgColorRgb
-                , input [ type_ "text", id "fgColorText", value fgColor, onInput SetFgColor ] []
-                ]
-            ]
-        ]
-
-
-viewFgFontInput : I18n.Label -> FgFont -> Html Msg
-viewFgFontInput i18n font =
-    div []
-        [ label [ for "fgFont" ]
-            [ text i18n.fgFont
-            , small []
-                [ a
-                    [ href "https://docs.google.com/forms/d/e/1FAIpQLScMezFWGTb_kdzS8jPiP-bu3KpwwGGOv7HkSbRdQdEiIodUtA/viewform?usp=sf_link", class "secondary" ]
-                    [ i [ class "fas", class "fa-up-right-from-square", role "button-icon" ] []
-                    , text i18n.fgFontRequest
-                    ]
-                ]
-            ]
-        , select [ id "fgFont", onInput selectFgFont ]
-            [ option [ value <| encodeFgFont DDinBold, selected <| font == DDinBold ] [ text i18n.fgFontDDinBold ]
-            , option [ value <| encodeFgFont Lora, selected <| font == Lora ] [ text i18n.fgFontLora ]
-            , option [ value <| encodeFgFont DSEG7ClassicBold, selected <| font == DSEG7ClassicBold ] [ text i18n.fgFontDSEG7ClassicBold ]
-            , option [ value <| encodeFgFont TekitouPoem, selected <| font == TekitouPoem ] [ text i18n.fgFontTekitouPoem ]
-            ]
-        ]
-
-
-selectFgFont : String -> Msg
-selectFgFont =
-    decodeFgFont >> Maybe.map SetFgFont >> Maybe.withDefault NoOp
-
-
-viewBgColorInput : I18n.Label -> BgColor -> Html Msg
-viewBgColorInput i18n bgColor =
-    div []
-        [ label [ for "bgColor" ] [ text i18n.bgColor ]
-        , select [ id "bgColor", onInput selectBgColor ]
-            [ option [ value <| encodeBgColor GreenBack, selected <| bgColor == GreenBack ] [ text i18n.bgColorGB ]
-            , option [ value <| encodeBgColor BlueBack, selected <| bgColor == BlueBack ] [ text i18n.bgColorBB ]
-            , option [ value <| encodeBgColor Transparent, selected <| bgColor == Transparent ] [ text i18n.bgColorTP ]
-            ]
-        ]
-
-
-selectBgColor : String -> Msg
-selectBgColor =
-    decodeBgColor >> Maybe.map SetBgColor >> Maybe.withDefault NoOp

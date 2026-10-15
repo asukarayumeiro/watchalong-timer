@@ -5,12 +5,7 @@ import "../css/main.scss";
 
 const parseParams = () => {
   const searchParams = (new URL(document.location)).searchParams;
-  const parseFg = (s) => {
-    if (!s) return null;
-    const re = /^#[0-9a-f]{6}$/;
-    if (re.test(s)) return s;
-    return null;
-  }
+
   const parseInit = (s) => {
     if (s) {
       const n = parseInt(s, 10);
@@ -18,14 +13,10 @@ const parseParams = () => {
       return n;
     }
     return null;
-  }
+  };
+
   return {
-    fg: parseFg(searchParams.get("fg")),
-    bg: searchParams.get("bg"),
-    ff: searchParams.get("ff"),
-    init: parseInit(searchParams.get("init")),
-    h: searchParams.get("h"),
-    p: searchParams.get("p")
+    init: parseInit(searchParams.get("init"))
   };
 };
 
@@ -39,6 +30,5 @@ export const startElmApp = (mainModule) => {
     const currentUrl = new URL(document.location);
     const newUrl = currentUrl.origin + currentUrl.pathname + newQS;
     window.history.replaceState(null, "", newUrl);
-  })
-
-}
+  });
+};
