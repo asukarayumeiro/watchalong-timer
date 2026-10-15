@@ -13,30 +13,6 @@
       name="description"
       content="「映画の同時視聴、ファンとタイミングを合わせるのが難しい…」を解決！SyncTimerは、YouTube等の同時視聴配信に特化した無料タイマーです。背景透過（クロマキー）対応で配信画面に馴染み、マイナス秒からのカウントダウンで開始タイミングを完璧に同期できます。ログイン不要ですぐに使えます。"
     />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-LN7KW2PYR4"
-      type="module"
-    ></script>
-    <script async>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-LN7KW2PYR4");
-    </script>
-    <script>
-      const startTime = new Date();
-      window.addEventListener("unload", () => {
-        gtag("event", "page_unload", {
-          event_label: "unload",
-          value: Math.floor((new Date() - startTime) / 1000),
-        });
-      });
-    </script>
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -70,7 +46,7 @@
     <header>
       <nav class="container">
         <ul>
-          <li><strong style="font-size: xx-large">SyncTimer</strong></li>
+          <li><strong style="font-size: xx-large">Title</strong></li>
         </ul>
       </nav>
     </header>
@@ -85,7 +61,7 @@
                 href="https://x.com/asukarayumeiro"
                 target="_blank"
                 rel="noopener noreferrer"
-                data-tooltip="Twitterアカウント"
+                data-tooltip="Xアカウント"
                 ><i class="fab fa-twitter button-icon"></i>@asukarayumeiro
                 </a
               >
