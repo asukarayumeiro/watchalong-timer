@@ -178,8 +178,3 @@ resetForm i18n =
             , text i18n.reset
             ]
         ]
-
-div [ class "timer-controls" ]
-    [ viewTimerDigits model.timeMillis
-    , div [] [ startPauseButton label model.paused ]
-    ]
