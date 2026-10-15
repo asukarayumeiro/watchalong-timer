@@ -20,35 +20,6 @@ body > main {
   --block-spacing-vertical: calc(var(--spacing) * 0);
 }
 
-/*
- * "D-DIN" is licensed under the SIL Open Font License 1.1
- * https://www.1001fonts.com/d-din-font.html
- * http://scripts.sil.org/OFL
- */
-@font-face {
-  font-family: "D-DIN-bold";
-  src: url("D-DIN-Bold.woff2") format("woff2");
-  font-display: swap;
-}
-
-/*
- * Font "DSEG" by けしかん
- */
-@font-face {
-  font-family: "DSEG7-Classic-Bold";
-  src: url("DSEG7Classic-Bold.woff2") format("woff2");
-  font-display: swap;
-}
-
-/*
- * Font "適当ポエム" by Hagi42
- * https://cktrc.com/tekitoupoem-font/
- */
-@font-face {
-  font-family: "Tekitou-Poem-SemiBold";
-  src: url("Tekitou-Poem-SemiBold.woff2") format("woff2");
-  font-display: swap;
-}
 
 
 .timer {
