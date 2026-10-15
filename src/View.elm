@@ -40,9 +40,16 @@ viewTimer : I18n.Label -> Model -> Html Msg
 viewTimer label model =
     div [ class "grid" ]
         [ div [ class "timer-controls" ]
-            [ viewTimerDigits model.timeMillis
-            , div [] [ startPauseButton label model.paused ]
-            ]
+			[ viewTimerDigits model.timeMillis
+			, div []
+			    [ button
+			        [ class "outline"
+			        , id "countdown-start-button"
+			        ]
+			        [ text "10秒カウントしてから開始" ]
+			    , startPauseButton label model.paused
+			    ]
+			]
         , viewTimerControls label model
         ]
 
