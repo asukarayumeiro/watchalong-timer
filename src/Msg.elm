@@ -1,11 +1,7 @@
-port module Msg exposing (Msg(..), update)
+module Msg exposing (Msg(..), update)
 
-import Model exposing (Model, Setting, defaultSetting)
+import Model exposing (Model)
 import Time
-import Url.Builder as UB
-
-
-port setQueryString : String -> Cmd msg
 
 
 type Msg
@@ -13,7 +9,6 @@ type Msg
     | Pause
     | Reset
     | UpdateTime Time.Posix
-    | UpdateResetTime Int
     | RewindSec Int
     | FastForwardSec Int
     | NoOp
@@ -30,7 +25,7 @@ update msg model =
 
         Reset ->
             ( { model
-                | timeMillis = model.setting.initialTimeSeconds * 1000
+                | timeMillis = 0
                 , paused = True
                 , current = Nothing
               }
@@ -43,11 +38,6 @@ update msg model =
                 , current = Just current
               }
             , Cmd.none
-            )
-
-        UpdateResetTime seconds ->
-            ( { model | setting = { initialTimeSeconds = seconds } }
-            , setQueryString <| urlFromSetting { initialTimeSeconds = seconds }
             )
 
         RewindSec sec ->
@@ -68,13 +58,3 @@ calculateMillis prevTime prevMillis currentTime =
 
         Nothing ->
             prevMillis
-
-
-urlFromSetting : Setting -> String
-urlFromSetting setting =
-    if setting.initialTimeSeconds == defaultSetting.initialTimeSeconds then
-        ""
-
-    else
-        UB.toQuery
-            [ UB.string "init" (String.fromInt setting.initialTimeSeconds) ]

@@ -1,25 +1,14 @@
 module Flag exposing (..)
 
-import Model exposing (Model, defaultSetting)
+import Model exposing (Model)
 import Msg exposing (Msg)
 
 
-type alias SettingFromQuery =
-    { init : Maybe Int
-    }
-
-
-initialModel : SettingFromQuery -> ( Model, Cmd Msg )
-initialModel setting =
-    let
-        initialTimeSeconds =
-            setting.init
-                |> Maybe.withDefault defaultSetting.initialTimeSeconds
-    in
-    ( { timeMillis = initialTimeSeconds * 1000
+initialModel : () -> ( Model, Cmd Msg )
+initialModel _ =
+    ( { timeMillis = 0
       , paused = True
       , current = Nothing
-      , setting = { initialTimeSeconds = initialTimeSeconds }
       }
     , Cmd.none
     )

@@ -23,12 +23,7 @@ const parseParams = () => {
 export const startElmApp = (mainModule) => {
   const app = mainModule.init({
     node: document.getElementById("root"),
-    flags: parseParams()
+    flags: null
   });
 
-  app.ports.setQueryString.subscribe((newQS) => {
-    const currentUrl = new URL(document.location);
-    const newUrl = currentUrl.origin + currentUrl.pathname + newQS;
-    window.history.replaceState(null, "", newUrl);
-  });
 };

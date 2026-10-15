@@ -134,7 +134,7 @@ viewTimerControls label model =
                 , fastForwardButton 3600 label.forward3600
                 ]
             ]
-        , div [] [ resetForm label model.setting.initialTimeSeconds ]
+        , div [] [ resetForm label ]
         ]
 
 
@@ -259,19 +259,10 @@ updateResetTimeValue isMinus timeValue =
         |> Maybe.withDefault NoOp
 
 
-resetForm : I18n.Label -> Int -> Html Msg
-resetForm i18n initialTimeSeconds =
+resetForm : I18n.Label -> Html Msg
+resetForm i18n =
     div [ class "reset-form" ]
-        [ input
-            [ type_ "time"
-            , value "00:00:00"
-            , step "1"
-            , size 8
-            , class "reset-form-time"
-            , onInput <| updateResetTimeValue False
-            ]
-            []
-        , button [ id "reset-button", class "contrast", class "reset-form-button", onClick Reset ]
+        [ button [ id "reset-button", class "contrast", class "reset-form-button", onClick Reset ]
             [ i [ class "fas", class "fa-backward-fast", class "button-icon" ] []
             , text i18n.reset
             ]

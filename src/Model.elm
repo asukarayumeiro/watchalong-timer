@@ -7,16 +7,4 @@ type alias Model =
     { timeMillis : Int
     , paused : Bool
     , current : Maybe Time.Posix
-    , setting : Setting
-    }
-
-
-type alias Setting =
-    { initialTimeSeconds : Int
-    }
-
-
-defaultSetting : Setting
-defaultSetting =
-    { initialTimeSeconds = -10
     }
