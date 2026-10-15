@@ -256,17 +256,7 @@ resetForm i18n initialTimeSeconds =
             initialTimeToResetTime initialTimeSeconds
     in
     div [ class "reset-form" ]
-        [ label [ for "reset-is-minus", class "reset-form-minus" ]
-            [ input
-                [ id "reset-is-minus"
-                , type_ "checkbox"
-                , checked resetTime.isMinus
-                , onCheck <| updateResetTimeMinus initialTimeSeconds
-                ]
-                []
-            , text i18n.minusSign
-            ]
-        , input
+        [ input
             [ type_ "time"
             , value <| resetTimeValueToString resetTime.timeValue
             , step "1"
