@@ -39,7 +39,10 @@ view label model =
 viewTimer : I18n.Label -> Model -> Html Msg
 viewTimer label model =
     div [ class "grid" ]
-        [ viewTimerDigits model.timeMillis
+        [ div []
+            [ viewTimerDigits model.timeMillis
+            , div [] [ startPauseButton label model.paused ]
+            ]
         , viewTimerControls label model
         ]
 
@@ -116,7 +119,6 @@ renderBig2Digits digits =
 viewTimerControls : I18n.Label -> Model -> Html Msg
 viewTimerControls label model =
     div [ class "controls" ]
-        [ div [] [ startPauseButton label model.paused ]
         , div [ class "ff-buttons" ]
             [ div [ class "ff-column" ]
                 [ rewindButton 1 label.backward
