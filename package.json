@@ -13,6 +13,7 @@
     "@types/node": "22.15.18",
     "elm-format": "^0.8.7",
     "elm-hot": "^1.1.6",
+    "elm-test": "0.19.1-revision15",
     "node-elm-compiler": "^5.0.6",
     "sass": "^1.85.1",
     "vite": "6.4.3",
@@ -23,6 +24,7 @@
     "dev": "vite",
     "check-format": "elm-format --validate src/*.elm",
     "format-all": "elm-format --yes src/*.elm",
+    "test": "elm-test",
     "build": "vite build"
   },
   "targets": {
