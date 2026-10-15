@@ -1,8 +1,8 @@
 {
-  "name": "sync-timer",
+  "name": "watchalong-timer",
   "version": "1.0.0",
-  "description": "マイナスからスタートできるシンプルなストップウォッチです。",
-  "author": "Eisuke Kuwahata",
+  "description": "同時視聴用のタイマーです。",
+  "author": "yota-2026",
   "private": true,
   "directories": {
     "test": "tests"
