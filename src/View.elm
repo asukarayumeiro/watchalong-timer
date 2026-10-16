@@ -47,28 +47,7 @@ viewTimer label model =
                     , id "countdown-start-button"
                     , onClick CountdownStart
                     ]
-                    [ text
-                        (case model.countdownRemaining of
-                            Just remaining ->
-                                div
-                                    [ class "timer"
-                                    , style "font-family" "'BIZ UDGothic', sans-serif"
-                                    , style "background-color" "#000000"
-                                    , style "color" "#ffffff"
-                                    , style "text-align" "center"
-                                    ]
-                                    [ div
-                                        [ class "digits"
-                                        , style "display" "flex"
-                                        , style "justify-content" "center"
-                                        , style "align-items" "center"
-                                        ]
-                                        [ text (String.fromInt remaining) ]
-                                    ]
-                            Nothing ->
-                                "10"
-                        )
-                    ]
+                    [ text "10" ]
                 , div
                     [ style "text-align" "center"
                     , style "font-size" "1.5rem"
@@ -90,6 +69,7 @@ viewTimerDigits model =
                 , style "font-family" "'BIZ UDGothic', sans-serif"
                 , style "background-color" "#000000"
                 , style "color" "#ffffff"
+                , style "text-align" "center"
                 ]
                 [ div [ class "digits" ]
                     [ text (String.fromInt remaining) ]
