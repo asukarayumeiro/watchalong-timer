@@ -281,13 +281,19 @@ body > main {
 /* マイナスボタン */
 .ff-column:first-child button {
   background-color: #ffcabf;
-  color: #ffffff;
+  color: #000000;
   border-color: #ffcabf;
 }
 
 /* プラスボタン */
 .ff-column:last-child button {
   background-color: #bfe4ff;
-  color: #ffffff;
+  color: #000000;
   border-color: #bfe4ff;
+}
+
+#reset-button {
+  background-color: #84919e;
+  color: #ffffff;
+  border-color: #84919e;
 }
