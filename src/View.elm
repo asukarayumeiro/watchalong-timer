@@ -250,7 +250,7 @@ labelMode label model =
             , type_ "checkbox"
             , checked model.countdownMode
             , onCheck (\_ -> ToggleCountdownMode)
-            , style "margin-right" "6"
+            , style "margin-right" "6px"
             ]
             []
         , text label.countdownMode
