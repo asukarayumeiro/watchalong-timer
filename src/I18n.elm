@@ -22,7 +22,7 @@ type alias Label =
 labelJa : Label
 labelJa =
     { start = "スタート"
-    , countdownStart = "10秒カウントしてスタート"
+    , countdownStart = "TEST BUTTON"
     , pause = "ポーズ"
     , reset = "リセット"
     , backward = "-1秒"
@@ -35,23 +35,4 @@ labelJa =
     , forward60 = "+1分"
     , forward600 = "+10分"
     , forward3600 = "+1時間"
-    }
-
-
-labelEn : Label
-labelEn =
-    { start = "Start"
-    , countdownStart = "Start after 10-second countdown"
-    , pause = "Pause"
-    , reset = "Reset"
-    , backward = "Backward 1sec"
-    , forward = "Forward 1sec"
-    , backward10 = "Backward 10sec"
-    , backward60 = "Backward 1min"
-    , backward600 = "Backward 10min"
-    , backward3600 = "Backward 1hour"
-    , forward10 = "Forward 10sec"
-    , forward60 = "Forward 1min"
-    , forward600 = "Forward 10min"
-    , forward3600 = "Forward 1hour"
     }

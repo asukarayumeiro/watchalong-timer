@@ -60,8 +60,6 @@ viewTimer label model =
         ]
 
 
-
-
 viewTimerDigits : Model -> Html Msg
 viewTimerDigits model =
     case model.countdownTarget of
