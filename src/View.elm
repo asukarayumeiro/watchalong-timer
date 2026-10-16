@@ -47,7 +47,7 @@ viewTimer label model =
                     , id "countdown-start-button"
                     , onClick CountdownStart
                     ]
-                    [ text "10" ]
+                    [ text label.countdownStart ]
                 , div
                     [ style "text-align" "center"
                     , style "font-size" "1.5rem"
