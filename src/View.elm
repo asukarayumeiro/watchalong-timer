@@ -42,19 +42,24 @@ viewTimer label model =
         [ div [ class "timer-controls" ]
             [ viewTimerDigits model
             , div []
-                [ button
-                    [ class "outline"
-                    , id "countdown-start-button"
-                    , onClick CountdownStart
+                (if model.countdownTarget /= Nothing then
+                    [ startPauseButton label model.paused ]
+
+                 else
+                    [ button
+                        [ class "outline"
+                        , id "countdown-start-button"
+                        , onClick CountdownStart
+                        ]
+                        [ text label.countdownStart ]
+                    , div
+                        [ style "text-align" "center"
+                        , style "font-size" "1.5rem"
+                        ]
+                        [ text "OR" ]
+                    , startPauseButton label model.paused
                     ]
-                    [ text label.countdownStart ]
-                , div
-                    [ style "text-align" "center"
-                    , style "font-size" "1.5rem"
-                    ]
-                    [ text "OR" ]
-                , startPauseButton label model.paused
-                ]
+                )
             ]
         , viewTimerControls label model
         ]
