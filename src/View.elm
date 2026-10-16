@@ -70,7 +70,10 @@ viewTimerDigits model =
                 , style "background-color" "#000000"
                 , style "color" "#ffffff"
                 ]
-                [ div [ class "digits" ]
+                [ div 
+                    [ class "digits"
+                    , style "padding-right" "0"
+                    ]
                     [ span
                         [ class "digit"
                         , style "display" "inline-block"
