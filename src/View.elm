@@ -50,8 +50,21 @@ viewTimer label model =
                     [ text
                         (case model.countdownRemaining of
                             Just remaining ->
-                                String.fromInt remaining
-
+                                div
+                                    [ class "timer"
+                                    , style "font-family" "'BIZ UDGothic', sans-serif"
+                                    , style "background-color" "#000000"
+                                    , style "color" "#ffffff"
+                                    , style "text-align" "center"
+                                    ]
+                                    [ div
+                                        [ class "digits"
+                                        , style "display" "flex"
+                                        , style "justify-content" "center"
+                                        , style "align-items" "center"
+                                        ]
+                                        [ text (String.fromInt remaining) ]
+                                    ]
                             Nothing ->
                                 "10"
                         )
