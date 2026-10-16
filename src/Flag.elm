@@ -8,7 +8,7 @@ initialModel _ =
     ( { timeMillis = 0
       , paused = True
       , current = Nothing
-      , countdownRemaining = Nothing
+      , countdownTarget = Nothing
       }
     , Cmd.none
     )

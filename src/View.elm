@@ -60,17 +60,23 @@ viewTimer label model =
         ]
 
 
+
+
 viewTimerDigits : Model -> Html Msg
 viewTimerDigits model =
-    case model.countdownRemaining of
-        Just remaining ->
+    case model.countdownTarget of
+        Just target ->
+            let
+                remaining =
+                    (target - model.timeMillis + 999) // 1000
+            in
             div
                 [ class "timer"
                 , style "font-family" "'BIZ UDGothic', sans-serif"
                 , style "background-color" "#000000"
                 , style "color" "#ffffff"
                 ]
-                [ div 
+                [ div
                     [ class "digits"
                     , style "padding-right" "0"
                     ]
