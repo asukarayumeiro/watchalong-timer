@@ -8,4 +8,5 @@ type alias Model =
     , paused : Bool
     , current : Maybe Time.Posix
     , countdownTarget : Maybe Int
+    , countdownMode : Bool
     }

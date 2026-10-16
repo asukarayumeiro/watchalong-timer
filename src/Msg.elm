@@ -16,6 +16,7 @@ type Msg
     | NoOp
     | CountdownStart
     | CountdownStarted Time.Posix
+    | ToggleCountdownMode
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -111,6 +112,11 @@ update msg model =
 
         NoOp ->
             ( model, Cmd.none )
+            
+        ToggleCountdownMode ->
+            ( { model | countdownMode = not model.countdownMode }
+            , Cmd.none
+            )
 
 
 calculateMillis : Maybe Time.Posix -> Int -> Time.Posix -> Int

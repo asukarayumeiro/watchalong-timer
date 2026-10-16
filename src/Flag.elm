@@ -9,6 +9,7 @@ initialModel _ =
       , paused = True
       , current = Nothing
       , countdownTarget = Nothing
+      , countdownMode = False
       }
     , Cmd.none
     )

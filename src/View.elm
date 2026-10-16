@@ -6,6 +6,9 @@ import Html.Events exposing (onClick)
 import I18n
 import Model exposing (Model)
 import Msg exposing (Msg(..))
+import Html.Attributes exposing (checked, type_)
+import Html.Events exposing (onCheck)
+import Html
 
 
 type alias DisplayTime =
@@ -219,11 +222,39 @@ fastForwardButton sec caption =
         ]
 
 
-resetForm : I18n.Label -> Html Msg
-resetForm i18n =
-    div [ class "reset-form" ]
-        [ button [ id "reset-button", class "contrast", class "reset-form-button", onClick Reset ]
-            [ i [ class "fas", class "fa-rotate-left", class "button-icon" ] []
-            , text i18n.reset
+resetForm : I18n.Label -> Model -> Html Msg
+resetForm label model =
+    div
+        [ class "reset-form"
+        , style "display" "flex"
+        , style "align-items" "center"
+        , style "gap" "12px"
+        ]
+        [ labelMode model
+        , button
+            [ id "reset-button"
+            , class "contrast"
+            , class "reset-form-button"
+            , onClick Reset
             ]
+            [ i [ class "fas", class "fa-rotate-left", class "button-icon" ] []
+            , text label.reset
+            ]
+        ]
+
+labelMode : Model -> Html Msg
+labelMode model =
+    Html.label
+        [ style "display" "flex"
+        , style "align-items" "center"
+        , style "gap" "6px"
+        , style "margin" "0"
+        ]
+        [ Html.input
+            [ type_ "checkbox"
+            , checked model.countdownMode
+            , onCheck (\_ -> ToggleCountdownMode)
+            ]
+            []
+        , text "カウントダウン"
         ]
