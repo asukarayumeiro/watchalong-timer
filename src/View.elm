@@ -244,7 +244,7 @@ labelMode label model =
     Html.label
         [ style "display" "flex"
         , style "align-items" "center"
-        , style "gap" "2px"
+        , style "gap" "0px"
         , style "margin" "0"
         ]
         [ Html.input
