@@ -40,7 +40,7 @@ viewTimer : I18n.Label -> Model -> Html Msg
 viewTimer label model =
     div [ class "grid" ]
         [ div [ class "timer-controls" ]
-            [ viewTimerDigits model.timeMillis
+            [ viewTimerDigits model
             , div []
                 [ button
                     [ class "outline"
@@ -68,8 +68,26 @@ viewTimer label model =
         ]
 
 
-viewTimerDigits : Int -> Html Msg
-viewTimerDigits millis =
+viewTimerDigits : Model -> Html Msg
+viewTimerDigits model =
+    case model.countdownRemaining of
+        Just remaining ->
+            div
+                [ class "timer"
+                , style "font-family" "'BIZ UDGothic', sans-serif"
+                , style "background-color" "#000000"
+                , style "color" "#ffffff"
+                ]
+                [ div [ class "digits" ]
+                    [ text (String.fromInt remaining) ]
+                ]
+
+        Nothing ->
+            viewNormalTimerDigits model.timeMillis
+
+
+viewNormalTimerDigits : Int -> Html Msg
+viewNormalTimerDigits millis =
     let
         displayTime =
             millisToDisplayTime millis
