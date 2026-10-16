@@ -45,8 +45,17 @@ viewTimer label model =
                 [ button
                     [ class "outline"
                     , id "countdown-start-button"
+                    , onClick CountdownStart
                     ]
-                    [ text label.countdownStart  ]
+                    [ text
+                        (case model.countdownRemaining of
+                            Just remaining ->
+                                "ŠJŽn‚Ü‚Å " ++ String.fromInt remaining ++ " •b"
+
+                            Nothing ->
+                                label.countdownStart
+                        )
+                    ]
                 , div
                     [ style "text-align" "center"
                     , style "font-size" "1.5rem"
