@@ -69,10 +69,11 @@ viewTimerDigits model =
                 , style "font-family" "'BIZ UDGothic', sans-serif"
                 , style "background-color" "#000000"
                 , style "color" "#ffffff"
-                , style "display" "flex"
-                , style "justify-content" "center"
                 ]
-                [ div [ class "digits" ]
+                [ div
+                    [ class "digits"
+                    , style "text-align" "center"
+                    ]
                     [ text (String.fromInt remaining) ]
                 ]
 
