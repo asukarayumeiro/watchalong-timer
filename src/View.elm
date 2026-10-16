@@ -43,7 +43,7 @@ viewTimer label model =
         [ div [ class "timer-controls" ]
             [ viewTimerDigits model
             , div []
-                [ if model.countdownTarget /= Nothing then
+                [ if not model.paused then
                     startPauseButton label False
 
                   else
