@@ -16,6 +16,7 @@ type alias Label =
     , forward60 : String
     , forward600 : String
     , forward3600 : String
+    , countdownMode : String
     }
 
 
@@ -35,4 +36,5 @@ labelJa =
     , forward60 = "+1分"
     , forward600 = "+10分"
     , forward3600 = "+1時間"
+    , countdownMode = "カウントダウン"
     }

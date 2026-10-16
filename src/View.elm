@@ -242,8 +242,8 @@ resetForm label model =
             ]
         ]
 
-labelMode : Model -> Html Msg
-labelMode model =
+labelMode : I18n.Label -> Model -> Html Msg
+labelMode label model =
     Html.label
         [ style "display" "flex"
         , style "align-items" "center"
@@ -256,5 +256,5 @@ labelMode model =
             , onCheck (\_ -> ToggleCountdownMode)
             ]
             []
-        , text "カウントダウン"
+        , text label.countdownMode
         ]
