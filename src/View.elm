@@ -64,27 +64,21 @@ viewTimerDigits : Model -> Html Msg
 viewTimerDigits model =
     case model.countdownRemaining of
         Just remaining ->
-            let
-                countdownDigits =
-                    if remaining >= 10 then
-                        [ span styleTimerDigit [ text (String.fromInt remaining) ] ]
-
-                    else
-                        [ span
-                            [ class "digit"
-                            , style "width" "2ch"
-                            , style "text-align" "center"
-                            ]
-                            [ text (String.fromInt remaining) ]
-                        ]
-            in
             div
                 [ class "timer"
                 , style "font-family" "'BIZ UDGothic', sans-serif"
                 , style "background-color" "#000000"
                 , style "color" "#ffffff"
                 ]
-                [ div [ class "digits" ] countdownDigits ]
+                [ div [ class "digits" ]
+                    [ span
+                        [ class "digit"
+                        , style "display" "inline-block"
+                        , style "width" "2ch"
+                        , style "text-align" "center"
+                        ]
+                        [ text (String.fromInt remaining) ]
+                    ]
 
         Nothing ->
             viewNormalTimerDigits model.timeMillis
