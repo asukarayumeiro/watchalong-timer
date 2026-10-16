@@ -242,16 +242,14 @@ resetForm label model =
 labelMode : I18n.Label -> Model -> Html Msg
 labelMode label model =
     Html.label
-        [ style "display" "flex"
-        , style "align-items" "center"
-        , style "gap" "6px"
-        , style "margin" "0"
+        [ Html.Attributes.for "countdown-mode"
+        , class "countdown-mode"
         ]
         [ Html.input
-            [ type_ "checkbox"
+            [ id "countdown-mode"
+            , type_ "checkbox"
             , checked model.countdownMode
             , onCheck (\_ -> ToggleCountdownMode)
-            , style "margin-right" "0"
             ]
             []
         , text label.countdownMode
