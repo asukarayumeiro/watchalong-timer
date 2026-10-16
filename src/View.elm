@@ -36,39 +36,30 @@ view label model =
         ]
 
 
+
 viewTimer : I18n.Label -> Model -> Html Msg
 viewTimer label model =
     div [ class "grid" ]
         [ div [ class "timer-controls" ]
             [ viewTimerDigits model
             , div []
-                (if model.countdownTarget /= Nothing then
-                    [ button
-                        [ id "pause-button"
-                        , class "start-stop-button"
-                        , class "secondary"
-                        , onClick Pause
-                        ]
-                        [ i [ class "fas", class "fa-pause", class "button-icon" ] []
-                        , text label.pause
-                        ]
-                    ]
+                [ if model.countdownTarget /= Nothing then
+                    startPauseButton label False
 
-                 else
-                    [ button
+                  else
+                    button
                         [ class "outline"
                         , id "countdown-start-button"
                         , onClick CountdownStart
                         ]
                         [ text label.countdownStart ]
-                    , div
-                        [ style "text-align" "center"
-                        , style "font-size" "1.5rem"
-                        ]
-                        [ text "OR" ]
-                    , startPauseButton label model.paused
+                , div
+                    [ style "text-align" "center"
+                    , style "font-size" "1.5rem"
                     ]
-                )
+                    [ text "OR" ]
+                , startPauseButton label model.paused
+                ]
             ]
         , viewTimerControls label model
         ]
