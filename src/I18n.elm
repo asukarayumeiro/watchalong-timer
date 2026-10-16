@@ -21,9 +21,9 @@ type alias Label =
 
 labelJa : Label
 labelJa =
-    { start = "開始"
-    , countdownStart = "10秒カウント + 開始"
-    , pause = "一時停止"
+    { start = "スタート"
+    , countdownStart = "10秒カウントしてスタート"
+    , pause = "ポーズ"
     , reset = "リセット"
     , backward = "-1秒"
     , forward = "+1秒"
