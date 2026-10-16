@@ -248,9 +248,9 @@ body > main {
 }
 
 #start-button {
-  background-color: #d8f255;
-  color: #ffffff;
-  border-color: #d8f255;
+  background-color: #ffffff;
+  color: #03af7a;
+  border-color: #03af7a;
 }
 
 #pause-button {
@@ -266,7 +266,7 @@ body > main {
 }
 
 .countdown-controls button:first-child {
-  flex: 3;
+  flex: 4;
 }
 
 .countdown-controls button:last-child {
