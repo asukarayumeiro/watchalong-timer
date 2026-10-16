@@ -1,14 +1,11 @@
 module View exposing (DisplayTime, millisToDisplayTime, view)
 
 import Html exposing (Html, button, div, i, span, text)
-import Html.Attributes exposing (class, id, style)
-import Html.Events exposing (onClick)
+import Html.Attributes exposing (checked, class, id, style, type_)
+import Html.Events exposing (onCheck, onClick)
 import I18n
 import Model exposing (Model)
 import Msg exposing (Msg(..))
-import Html.Attributes exposing (checked, type_)
-import Html.Events exposing (onCheck)
-import Html
 
 
 type alias DisplayTime =
@@ -187,7 +184,7 @@ viewTimerControls label model =
                 , fastForwardButton 1 label.forward
                 ]
             ]
-        , div [] [ resetForm label ]
+        , div [] [ resetForm label model ]
         ]
 
 
@@ -230,7 +227,7 @@ resetForm label model =
         , style "align-items" "center"
         , style "gap" "12px"
         ]
-        [ labelMode model
+        [ labelMode label model
         , button
             [ id "reset-button"
             , class "contrast"
