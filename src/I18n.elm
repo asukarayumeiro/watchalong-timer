@@ -36,5 +36,5 @@ labelJa =
     , forward60 = "+1分"
     , forward600 = "+10分"
     , forward3600 = "+1時間"
-    , countdownMode = "カウントダウンモード"
+    , countdownMode = ""
     }
