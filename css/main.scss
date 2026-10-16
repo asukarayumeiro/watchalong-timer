@@ -265,8 +265,15 @@ body > main {
   gap: 8px;
 }
 
-.countdown-controls button {
+.countdown-controls button:first-child {
+  flex: 2;
+}
+
+.countdown-controls button:last-child {
   flex: 1;
+}
+
+.countdown-controls button {
   width: 100%;
   margin: 0;
 }
