@@ -36,13 +36,13 @@ view label model =
         ]
 
 
-
 viewTimer : I18n.Label -> Model -> Html Msg
 viewTimer label model =
     div [ class "grid" ]
         [ div [ class "timer-controls" ]
             [ viewTimerDigits model
-            , div []
+            , div
+                [ class "countdown-controls" ]
                 [ if not model.paused then
                     startPauseButton label False
 

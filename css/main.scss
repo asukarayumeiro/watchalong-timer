@@ -258,3 +258,13 @@ body > main {
   color: #ffffff;
   border-color: #ff4b00;
 }
+
+.countdown-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.countdown-controls button {
+  margin: 0;
+}
