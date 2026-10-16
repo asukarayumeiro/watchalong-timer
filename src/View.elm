@@ -53,11 +53,6 @@ viewTimer label model =
                         , onClick CountdownStart
                         ]
                         [ text label.countdownStart ]
-                , div
-                    [ style "text-align" "center"
-                    , style "font-size" "1.5rem"
-                    ]
-                    [ text "OR" ]
                 , startPauseButton label model.paused
                 ]
             ]
