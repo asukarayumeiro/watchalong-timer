@@ -43,7 +43,16 @@ viewTimer label model =
             [ viewTimerDigits model
             , div []
                 (if model.countdownTarget /= Nothing then
-                    [ startPauseButton label model.paused ]
+                    [ button
+                        [ id "pause-button"
+                        , class "start-stop-button"
+                        , class "secondary"
+                        , onClick Pause
+                        ]
+                        [ i [ class "fas", class "fa-pause", class "button-icon" ] []
+                        , text label.pause
+                        ]
+                    ]
 
                  else
                     [ button
