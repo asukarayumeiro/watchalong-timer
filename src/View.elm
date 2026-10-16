@@ -52,7 +52,9 @@ viewTimer label model =
                         , id "countdown-start-button"
                         , onClick CountdownStart
                         ]
-                        [ text label.countdownStart ]
+                        [ i [ class "fas", class "fa-stopwatch", class "button-icon" ] []
+                        , text label.countdownStart
+                        ]
                 , startPauseButton label model.paused
                 ]
             ]
@@ -219,7 +221,7 @@ resetForm : I18n.Label -> Html Msg
 resetForm i18n =
     div [ class "reset-form" ]
         [ button [ id "reset-button", class "contrast", class "reset-form-button", onClick Reset ]
-            [ i [ class "fas", class "fa-backward-fast", class "button-icon" ] []
+            [ i [ class "fas", class "fa-rotate-left", class "button-icon" ] []
             , text i18n.reset
             ]
         ]
