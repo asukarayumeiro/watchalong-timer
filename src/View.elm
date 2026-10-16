@@ -82,6 +82,7 @@ viewTimerDigits model =
                         ]
                         [ text (String.fromInt remaining) ]
                     ]
+                ]
 
         Nothing ->
             viewNormalTimerDigits model.timeMillis
