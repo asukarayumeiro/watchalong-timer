@@ -50,10 +50,10 @@ viewTimer label model =
                     [ text
                         (case model.countdownRemaining of
                             Just remaining ->
-                                "ŠJŽn‚Ü‚Å " ++ String.fromInt remaining ++ " •b"
+                                String.fromInt remaining
 
                             Nothing ->
-                                label.countdownStart
+                                "10"
                         )
                     ]
                 , div
