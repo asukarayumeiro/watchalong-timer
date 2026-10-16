@@ -155,8 +155,10 @@ startPauseButton : I18n.Label -> Bool -> Html Msg
 startPauseButton label paused =
     if paused then
         button
-            [ id "countdown-start-button", onClick Start ]
-            [ text label.countdownStart ]
+            [ id "start-button", class "start-stop-button", onClick Start ]
+            [ i [ class "fas", class "fa-play", class "button-icon" ] []
+            , text label.start
+            ]
 
     else
         button
