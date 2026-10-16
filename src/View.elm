@@ -170,18 +170,18 @@ viewTimerControls label model =
     div [ class "controls" ]
         [ div [ class "ff-buttons" ]
             [ div [ class "ff-column" ]
-                [ rewindButton 1 label.backward
-                , rewindButton 10 label.backward10
-                , rewindButton 60 label.backward60
+                [ rewindButton 3600 label.backward3600
                 , rewindButton 600 label.backward600
-                , rewindButton 3600 label.backward3600
+                , rewindButton 60 label.backward60
+                , rewindButton 10 label.backward10
+                , rewindButton 1 label.backward
                 ]
             , div [ class "ff-column" ]
-                [ fastForwardButton 1 label.forward
-                , fastForwardButton 10 label.forward10
-                , fastForwardButton 60 label.forward60
+                [ fastForwardButton 3600 label.forward3600
                 , fastForwardButton 600 label.forward600
-                , fastForwardButton 3600 label.forward3600
+                , fastForwardButton 60 label.forward60
+                , fastForwardButton 10 label.forward10
+                , fastForwardButton 1 label.forward
                 ]
             ]
         , div [] [ resetForm label ]

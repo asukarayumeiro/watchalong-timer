@@ -248,9 +248,9 @@ body > main {
 }
 
 #start-button {
-  background-color: #77d9a8;
+  background-color: #03af7a;
   color: #ffffff;
-  border-color: #77d9a8;
+  border-color: #03af7a;
 }
 
 #pause-button {
@@ -276,4 +276,18 @@ body > main {
 .countdown-controls button {
   width: 100%;
   margin: 0;
+}
+
+/* マイナスボタン */
+.ff-column:first-child button {
+  background-color: #ffffff;
+  color: #ff4b00;
+  border-color: #ff4b00;
+}
+
+/* プラスボタン */
+.ff-column:last-child button {
+  background-color: #ffffff;
+  color: #005aff;
+  border-color: #005aff;
 }
